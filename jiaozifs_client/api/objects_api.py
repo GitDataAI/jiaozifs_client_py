@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
-import seven
+import six
 
 from jiaozifs_client.api_client import ApiClient
 
@@ -566,14 +566,14 @@ class ObjectsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['ref_name', 'path', 'owner', 'repository', 'content']  # noqa: E501
+        all_params = ['ref_name', 'path', 'owner', 'repository', 'content', 'body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
 
         params = locals()
-        for key, val in seven.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params['kwargs']):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
