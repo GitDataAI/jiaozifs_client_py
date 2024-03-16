@@ -1,0 +1,9 @@
+# generate code by below command 
+
+```bash
+#download
+wget https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.52/swagger-codegen-cli-3.0.52.jar -O swagger-codegen-cli.jar
+
+#genenrate
+java -jar swagger-codegen-cli.jar generate -i /home/hunjixin/code/jiaozifs/api/swagger.yml -l python -o . -c ./config.json --git-user-id GitDataAI --git-repo-id jiaozifs_client_py
+```
