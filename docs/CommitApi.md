@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_entries_in_ref**
-> list[FullTreeEntry] get_entries_in_ref(owner, repository, type, path=path, ref=ref, recursive=recursive, pattern=pattern)
+> list[FullTreeEntry] get_entries_in_ref(owner, repository, type, path=path, ref=ref)
 
 list entries in ref
 
@@ -159,12 +159,10 @@ repository = 'repository_example' # str |
 type = jiaozifs_client.RefType() # RefType | type indicate to retrieve from wip/branch/tag/commit, default branch
 path = 'path_example' # str | specific path, if not specific return entries in root (optional)
 ref = 'ref_example' # str | specific( ref name, tag name, commit hash), for wip and branchm, branch name default to repository default branch(HEAD), (optional)
-recursive = true # bool | recursive get entries (include sub files) (optional)
-pattern = true # bool | pattern to get files (optional)
 
 try:
     # list entries in ref
-    api_response = api_instance.get_entries_in_ref(owner, repository, type, path=path, ref=ref, recursive=recursive, pattern=pattern)
+    api_response = api_instance.get_entries_in_ref(owner, repository, type, path=path, ref=ref)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CommitApi->get_entries_in_ref: %s\n" % e)
@@ -179,8 +177,6 @@ Name | Type | Description  | Notes
  **type** | [**RefType**](.md)| type indicate to retrieve from wip/branch/tag/commit, default branch | 
  **path** | **str**| specific path, if not specific return entries in root | [optional] 
  **ref** | **str**| specific( ref name, tag name, commit hash), for wip and branchm, branch name default to repository default branch(HEAD), | [optional] 
- **recursive** | **bool**| recursive get entries (include sub files) | [optional] 
- **pattern** | **bool**| pattern to get files | [optional] 
 
 ### Return type
 

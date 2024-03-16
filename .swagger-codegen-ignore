@@ -21,3 +21,7 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+jiaozifs_client/api_client.py
+jiaozifs_client/configuration.py
+jiaozifs_client/rest.py

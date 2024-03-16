@@ -272,8 +272,6 @@ class CommitApi(object):
         :param RefType type: type indicate to retrieve from wip/branch/tag/commit, default branch (required)
         :param str path: specific path, if not specific return entries in root
         :param str ref: specific( ref name, tag name, commit hash), for wip and branchm, branch name default to repository default branch(HEAD),
-        :param bool recursive: recursive get entries (include sub files)
-        :param bool pattern: pattern to get files
         :return: list[FullTreeEntry]
                  If the method is called asynchronously,
                  returns the request thread.
@@ -299,14 +297,12 @@ class CommitApi(object):
         :param RefType type: type indicate to retrieve from wip/branch/tag/commit, default branch (required)
         :param str path: specific path, if not specific return entries in root
         :param str ref: specific( ref name, tag name, commit hash), for wip and branchm, branch name default to repository default branch(HEAD),
-        :param bool recursive: recursive get entries (include sub files)
-        :param bool pattern: pattern to get files
         :return: list[FullTreeEntry]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['owner', 'repository', 'type', 'path', 'ref', 'recursive', 'pattern']  # noqa: E501
+        all_params = ['owner', 'repository', 'type', 'path', 'ref']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -349,10 +345,6 @@ class CommitApi(object):
             query_params.append(('ref', params['ref']))  # noqa: E501
         if 'type' in params:
             query_params.append(('type', params['type']))  # noqa: E501
-        if 'recursive' in params:
-            query_params.append(('recursive', params['recursive']))  # noqa: E501
-        if 'pattern' in params:
-            query_params.append(('pattern', params['pattern']))  # noqa: E501
 
         header_params = {}
 
