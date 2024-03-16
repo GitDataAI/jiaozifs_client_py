@@ -15,7 +15,7 @@ from __future__ import absolute_import
 import re  # noqa: F401
 
 # python 2 and python 3 compatibility library
-import six
+import seven
 
 from jiaozifs_client.api_client import ApiClient
 
@@ -534,6 +534,7 @@ class ObjectsApi(object):
         :param str owner: (required)
         :param str repository: (required)
         :param str content:
+        :param Object body:
         :return: ObjectStats
                  If the method is called asynchronously,
                  returns the request thread.
@@ -559,6 +560,7 @@ class ObjectsApi(object):
         :param str owner: (required)
         :param str repository: (required)
         :param str content:
+        :param Object body:     
         :return: ObjectStats
                  If the method is called asynchronously,
                  returns the request thread.
@@ -571,134 +573,7 @@ class ObjectsApi(object):
         all_params.append('_request_timeout')
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method upload_object" % key
-                )
-            params[key] = val
-        del params['kwargs']
-        # verify the required parameter 'ref_name' is set
-        if ('ref_name' not in params or
-                params['ref_name'] is None):
-            raise ValueError("Missing the required parameter `ref_name` when calling `upload_object`")  # noqa: E501
-        # verify the required parameter 'path' is set
-        if ('path' not in params or
-                params['path'] is None):
-            raise ValueError("Missing the required parameter `path` when calling `upload_object`")  # noqa: E501
-        # verify the required parameter 'owner' is set
-        if ('owner' not in params or
-                params['owner'] is None):
-            raise ValueError("Missing the required parameter `owner` when calling `upload_object`")  # noqa: E501
-        # verify the required parameter 'repository' is set
-        if ('repository' not in params or
-                params['repository'] is None):
-            raise ValueError("Missing the required parameter `repository` when calling `upload_object`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'owner' in params:
-            path_params['owner'] = params['owner']  # noqa: E501
-        if 'repository' in params:
-            path_params['repository'] = params['repository']  # noqa: E501
-
-        query_params = []
-        if 'ref_name' in params:
-            query_params.append(('refName', params['ref_name']))  # noqa: E501
-        if 'path' in params:
-            query_params.append(('path', params['path']))  # noqa: E501
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-        if 'content' in params:
-            local_var_files['content'] = params['content']  # noqa: E501
-
-        body_params = None
-        if 'body' in params:
-            body_params = params['body']
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['multipart/form-data', 'application/octet-stream'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['basic_auth', 'cookie_auth', 'jwt_token']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/object/{owner}/{repository}', 'POST',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='ObjectStats',  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def upload_object(self, ref_name, path, owner, repository, **kwargs):  # noqa: E501
-        """upload_object  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.upload_object(ref_name, path, owner, repository, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str ref_name: branch/tag to the ref (required)
-        :param str path: relative to the ref (required)
-        :param str owner: (required)
-        :param str repository: (required)
-        :param Object body:
-        :return: ObjectStats
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.upload_object_with_http_info(ref_name, path, owner, repository, **kwargs)  # noqa: E501
-        else:
-            (data) = self.upload_object_with_http_info(ref_name, path, owner, repository, **kwargs)  # noqa: E501
-            return data
-
-    def upload_object_with_http_info(self, ref_name, path, owner, repository, **kwargs):  # noqa: E501
-        """upload_object  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.upload_object_with_http_info(ref_name, path, owner, repository, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str ref_name: branch/tag to the ref (required)
-        :param str path: relative to the ref (required)
-        :param str owner: (required)
-        :param str repository: (required)
-        :param Object body:
-        :return: ObjectStats
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = ['ref_name', 'path', 'owner', 'repository', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in seven.iteritems(params['kwargs']):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
