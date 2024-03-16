@@ -17,10 +17,9 @@ import logging
 import multiprocessing
 import sys
 import urllib3
-
 import six
 from six.moves import http_client as httplib
-
+from typing import Optional
 
 class TypeWithDefault(type):
     def __init__(cls, name, bases, dct):
@@ -100,6 +99,8 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.proxy = None
         # Safe chars for path_param
         self.safe_chars_for_path_param = ''
+
+        self.signer: Optional[V0Signer] = None
 
     @property
     def logger_file(self):

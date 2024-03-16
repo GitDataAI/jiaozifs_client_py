@@ -28,6 +28,7 @@ from jiaozifs_client.api.objects_api import ObjectsApi
 from jiaozifs_client.api.repo_api import RepoApi
 from jiaozifs_client.api.wip_api import WipApi
 # import ApiClient
+from jiaozifs_client.signer import V0Signer
 from jiaozifs_client.api_client import ApiClient
 from jiaozifs_client.configuration import Configuration
 # import models into sdk package

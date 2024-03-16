@@ -22,6 +22,7 @@ import certifi
 # python 2 and python 3 compatibility library
 import six
 from six.moves.urllib.parse import urlencode
+from typing import Optional
 
 try:
     import urllib3
@@ -80,7 +81,7 @@ class RESTClientObject(object):
                 maxsize = configuration.connection_pool_maxsize
             else:
                 maxsize = 4
-
+        self.signer: Optional[V0Signer] = configuration.signer
         # https pool manager
         if configuration.proxy:
             self.pool_manager = urllib3.ProxyManager(
@@ -148,7 +149,8 @@ class RESTClientObject(object):
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
-
+        if self.signer:
+            query_params = self.signer.sign(url, method, headers, query_params)
         try:
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
             if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
