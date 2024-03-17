@@ -263,7 +263,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_object**
-> ObjectStats upload_object(ref_name, path, owner, repository, content=content)
+> ObjectStats upload_object(ref_name, path, owner, repository, content=content, is_replace=is_replace)
 
 
 
@@ -291,9 +291,10 @@ path = 'path_example' # str | relative to the ref
 owner = 'owner_example' # str | 
 repository = 'repository_example' # str | 
 content = 'content_example' # str |  (optional)
+is_replace = true # bool | indicate to replace existing object or not (optional)
 
 try:
-    api_response = api_instance.upload_object(ref_name, path, owner, repository, content=content)
+    api_response = api_instance.upload_object(ref_name, path, owner, repository, content=content, is_replace=is_replace)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ObjectsApi->upload_object: %s\n" % e)
@@ -308,6 +309,7 @@ Name | Type | Description  | Notes
  **owner** | **str**|  | 
  **repository** | **str**|  | 
  **content** | **str**|  | [optional] 
+ **is_replace** | **bool**| indicate to replace existing object or not | [optional] 
 
 ### Return type
 

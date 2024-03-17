@@ -535,6 +535,8 @@ class ObjectsApi(object):
         :param str repository: (required)
         :param str content:
         :param Object body:
+        :param bool is_replace: indicate to replace existing object or not
+        :param Object body:
         :return: ObjectStats
                  If the method is called asynchronously,
                  returns the request thread.
@@ -560,13 +562,14 @@ class ObjectsApi(object):
         :param str owner: (required)
         :param str repository: (required)
         :param str content:
-        :param Object body:     
+        :param Object body:
+        :param bool is_replace: indicate to replace existing object or not
         :return: ObjectStats
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['ref_name', 'path', 'owner', 'repository', 'content', 'body']  # noqa: E501
+        all_params = ['ref_name', 'path', 'owner', 'repository', 'content', 'body', 'is_replace']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -611,6 +614,8 @@ class ObjectsApi(object):
             query_params.append(('refName', params['ref_name']))  # noqa: E501
         if 'path' in params:
             query_params.append(('path', params['path']))  # noqa: E501
+        if 'is_replace' in params:
+            query_params.append(('isReplace', params['is_replace']))  # noqa: E501
 
         header_params = {}
 
