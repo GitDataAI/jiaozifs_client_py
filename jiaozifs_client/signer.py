@@ -57,7 +57,11 @@ class V0Signer:
             query_keys_and_values.append(f"{k}={v}")
         query_string = "&".join(query_keys_and_values)
 
-        string_to_sign = "\n".join([method, url_parts.hostname, path, query_string])
+        host = url_parts.hostname
+        if url_parts.port is not None:
+            host = host + ":" + str( url_parts.port)
+        
+        string_to_sign = "\n".join([method, host, path, query_string])
 
         signature = base64.b64encode(hmac.new(
             self.secret_key.encode("utf-8"),
